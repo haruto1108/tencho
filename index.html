@@ -9,15 +9,19 @@ body {
   font-family: sans-serif;
   margin-top: 100px;
 }
-img.photo {
+img {
   max-width: 90%;
-  display: none; /* 最初は非表示 */
   margin-top: 20px;
 }
 input, button {
   font-size: 16px;
   padding: 5px 10px;
   margin: 5px;
+}
+#message {
+  font-size: 18px;
+  color: green;
+  margin-top: 20px;
 }
 </style>
 </head>
@@ -29,24 +33,40 @@ input, button {
 <input type="password" id="pass">
 <button onclick="check()">ログイン</button>
 
-<br><br>
-
-<!-- 画像に class="photo" を付けてまとめて制御 -->
-<img src="店長/1.jpg" class="photo">
-<img src="店長/2.jpg" class="photo">
-<img src="店長/3.jpg" class="photo">
-<img src="店長/4.png" class="photo">
+<div id="message"></div>
+<div id="photoContainer"></div> <!-- ここに画像を追加 -->
 
 <script>
 function check() {
   const password = document.getElementById("pass").value;
+  const container = document.getElementById("photoContainer");
+  const message = document.getElementById("message");
 
+  // パスワードが正しいかチェック
   if(password === "tencho") {
-    // class="photo" の全ての画像を表示
-    const photos = document.querySelectorAll(".photo");
-    photos.forEach(img => img.style.display = "block");
+    // メッセージを表示
+    message.textContent = "パスワード認証成功！画像を表示します";
+
+    // 画像URLリスト
+    const images = [
+      "店長/1.jpg",
+      "店長/2.jpg",
+      "店長/3.jpg",
+      "店長/4.png"
+    ];
+
+    // containerを空にしてから画像を追加
+    container.innerHTML = "";
+    images.forEach(src => {
+      const img = document.createElement("img");
+      img.src = src;
+      container.appendChild(img);
+    });
+
   } else {
     alert("パスワードが違います");
+    message.textContent = ""; // メッセージクリア
+    container.innerHTML = ""; // 画像も消す
   }
 }
 </script>
