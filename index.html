@@ -9,9 +9,15 @@ body {
   font-family: sans-serif;
   margin-top: 100px;
 }
-img {
+img.photo {
   max-width: 90%;
-  display: none;
+  display: none; /* 最初は非表示 */
+  margin-top: 20px;
+}
+input, button {
+  font-size: 16px;
+  padding: 5px 10px;
+  margin: 5px;
 }
 </style>
 </head>
@@ -25,17 +31,20 @@ img {
 
 <br><br>
 
-    <img src="店長/1.jpg">
-    <img src="店長/2.jpg">
-    <img src="店長/3.jpg">
-    <img src="店長/4.png">
+<!-- 画像に class="photo" を付けてまとめて制御 -->
+<img src="店長/1.jpg" class="photo">
+<img src="店長/2.jpg" class="photo">
+<img src="店長/3.jpg" class="photo">
+<img src="店長/4.png" class="photo">
 
 <script>
 function check() {
   const password = document.getElementById("pass").value;
 
   if(password === "tencho") {
-    document.getElementById("photo").style.display = "block";
+    // class="photo" の全ての画像を表示
+    const photos = document.querySelectorAll(".photo");
+    photos.forEach(img => img.style.display = "block");
   } else {
     alert("パスワードが違います");
   }
@@ -44,5 +53,6 @@ function check() {
 
 </body>
 </html>
+
 
 
