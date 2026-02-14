@@ -1,11 +1,43 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
+<title>Login</title>
+<style>
+body {
+  text-align: center;
+  font-family: sans-serif;
+  margin-top: 100px;
+}
+img {
+  max-width: 90%;
+  display: none;
+}
+</style>
 </head>
 <body>
-    <img src="店長/1.jpg">
-    <img src="店長/2.jpg">
-    <img src="店長/3.jpg">
-    <img src="店長/4.png">
+    
+<h2>パスワードを入力してください</h2>
+
+<input type="password" id="pass">
+<button onclick="check()">ログイン</button>
+
+<br><br>
+<img src="店長/1.jpg">
+<img src="店長/2.jpg">
+<img src="店長/3.jpg">
+<img src="店長/4.png">
+<script>
+function check() {
+  const password = document.getElementById("pass").value;
+
+  if(password === "tencho") {   // ←好きなパスワードに変えてOK
+    document.getElementById("photo").style.display = "block";
+  } else {
+    alert("パスワードが違います");
+  }
+}
+</script>
 </body>
 </html>
+
